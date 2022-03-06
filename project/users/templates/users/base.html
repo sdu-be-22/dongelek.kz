@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- load static css file -->
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+    <!-- load static css file -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Project</title>
+</head>
+
+<body>
+    <div class="container" style="margin: 0 auto;">
+        <header class="header">
+            <div class="logo">
+                <img class="logo_img" src="https://koperatif.com/wp-content/uploads/2017/02/kolesa_logo.png" alt="logo">
+            </div>
+            <div class="links">
+           {% block reg %}
+              
+           {% endblock reg %}     
+            {% block cabinet %}
+            <a href="">Личный кабинет<alt="loop" class="links_img"></a>
+            {% endblock cabinet %}
+            </div>
+        </header>
+
+        {% if messages %}
+
+        <div style="background-color: burlywood; padding: 10px 10px;">
+            {% for message in messages %}
+                <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+
+        <main class="main" style="font-family: 'Noto Sans', sans-serif;">
+            <div class="bgc menu">
+                <h2 class="title" style="font-size: 40px; font-weight: 800;">Популярные Марки</h2>
+                <div class="menu_block">
+                    <div class="items">
+                        <a href=""><img style="width: 180px; height: 140px;"
+                                src="https://автолого.рф/wp-content/uploads/toyota-logo.png" alt=""
+                                class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Toyota</h4>
+                        </div>
+                    </div>
+
+                    <div class="items">
+                        <a href=""> <img style="width: 180px; height: 140px;"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7GA96t0xvBzO3itW4CTm7LUGayDCk1axaJJWAw-5O61SrhnHNGqiKNj4grU-SLjfKzlE&usqp=CAU"
+                                alt="" class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Hyundai</h4>
+                        </div>
+                    </div>
+
+                    <div class="items">
+                        <a href=""> <img style="width: 180px; height: 140px;"
+                                src="https://www.carlogos.org/logo/Lexus-logo.png" alt="" class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Lexus</h4>
+                        </div>
+                    </div>
+
+                    <div class="items">
+                        <a href=""><img style="width: 180px; height: 140px;"
+                                src="https://logowik.com/content/uploads/images/kia-motors-new-20211718.jpg" alt=""
+                                class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Kia</h4>
+                        </div>
+                    </div>
+
+                    <div class="items">
+                        <a href=""> <img style="width: 180px; height: 140px;"
+                                src="https://w7.pngwing.com/pngs/409/855/png-transparent-mercedes-benz-logo-mercedes-benz-sprinter-car-mercedes-benz-s-class-mercedes-benz-a-class-mercedes-logo-angle-free-logo-design-template-png-graphics.png"
+                                alt="" class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Mercedes</h4>
+                        </div>
+                    </div>
+
+                    <div class="items">
+                        <a href=""> <img style="width: 180px; height: 140px;"
+                                src="https://e7.pngegg.com/pngimages/880/173/png-clipart-mitsubishi-motors-car-2008-mitsubishi-lancer-evolution-nissan-cars-logo-brands-angle-company-thumbnail.png"
+                                alt="" class="item_img"></a>
+                        <div class="item_name_rating">
+                            <h4 class="item_name">Mitsubishi</h4>
+                        </div>
+                    </div>
+                </div>
+                <button class="button">Больше марок</button>
+            </div>
+
+
+        </main>
+
+    </div>
+</body>
+
+</html>

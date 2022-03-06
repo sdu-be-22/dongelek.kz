@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: springgreen; color: black;">
+    <h1>Register Page</h1>
+    
+    <form action="" method="post" >
+        {% csrf_token %}
+        <h3>Join Now</h3>
+        
+        {{ form|crispy }}
+        
+        <button >Sign Up</button>
+        <p>Already have an account <a href="{% url 'login' %}">Sign In</a> </p>
+    </form>
+
+
+</body>
+</html>
