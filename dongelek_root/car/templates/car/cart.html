@@ -1,0 +1,32 @@
+{% extends 'car/base.html' %}
+{% block content %}
+    <div class="subcategory_cars">
+        {% for car in cars %}
+            <div class="in_category_car" onclick="location.href='{{ car.car.get_absolute_url }}'">
+                <div>
+                    <img src="{{car.car.main_image.url}}" alt="{{car.car.name}}" width="320px" height="240px">
+                </div>
+                <div class="in_category_car_main_information">
+                    <div class="in_category_car_name">
+                        {{car.car.name}}
+                    </div>
+                    <div class="in_category_car_short_info">
+                        {{car.car.year}} year, {{car.car.engine_capacity}}L, {{car.car.run}} kilometre
+                    </div>
+                    <div class="in_category_car_short_info">
+                        {{car.car.description|truncatewords:50}}
+                    </div>
+                    <div class="in_category_car_date_created">
+                        {{car.car.time_created}}
+                    </div>
+                </div>
+                <div class="in_category_car_price">
+                    <div class="price">
+                        {{ car.car.price }}
+                    </div>
+                    <div class="currency">KZT</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'car/base.html' %}
+{% block content %}
+    <form enctype="multipart/form-data" action="{{ car.get_absolute_add_url }}" method="post">
+        {% csrf_token %}
+        <input type="file" multiple name="image">
+        <br>
+        <br>
+        <br>
+        <button type="submit" href="/">Add images</button>
+    </form>
+{% endblock %}
