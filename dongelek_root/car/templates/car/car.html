@@ -10,8 +10,8 @@
 {% endblock %}
 {% block content %}
     <div id="car_id" car="{{ car.pk }}"></div>
-    <div class="">
-        <div class="" onclick="location.href='{{ car.get_absolute_url }}'">
+    <div class="subcategory_cars">
+        <div class="in_category_car" onclick="location.href='{{ car.get_absolute_url }}'">
             <div>
                 <img src="{{car.main_image.url}}" alt="{{car.name}}" id="main_image" width="320px" height="240px" >
                 <div id="photos_container">
@@ -21,21 +21,21 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="">
-                <div class="">
+            <div class="in_category_car_main_information">
+                <div class="in_category_car_name">
                     {{car.name}}
                 </div>
-                <div class="">
+                <div class="in_category_car_short_info">
                     {{car.year}} year, {{car.engine_capacity}}L, {{car.run}} kilometre
                 </div>
-                <div class="">
+                <div class="in_category_car_short_info">
                     {{car.description|truncatewords:50}}
                 </div>
-                <div class="">
+                <div class="in_category_car_date_created">
                     {{car.time_created}}
                 </div>
             </div>
-            <div class="">
+            <div class="in_category_car_price">
                 <div class="price">
                     {{ car.price }}
                 </div>
@@ -52,7 +52,7 @@
             No rating
         </div>
     {% endif %}
-    <div class="" seller-email="{{seller.email}}" seller-username="{{seller.username}}">
+    <div class="seller_info" seller-email="{{seller.email}}" seller-username="{{seller.username}}">
         {{seller.username}}
         {{seller.email}}
     </div>
@@ -92,7 +92,7 @@
         <div>
 
         </div>
-        <div class="">
+        <div class="rating_container">
             <form action="" method="post" class="rate-form">
                 {% csrf_token %}
                 <button type="submit" class="my-btn">
@@ -120,16 +120,16 @@
             <button type="submit">Comment</button>
         </form>
     {% endif %}
-    <div class="">
+    <div class="comments_container">
         {% for comment in comments %}
-            <div class="">
-                <div class="">
+            <div class="comment_container">
+                <div class="comment_author">
                     {{comment.author}}
                 </div>
-                <div class="">
+                <div class="comment_date">
                     {{comment.date}}
                 </div>
-                <div class="">
+                <div class="comment">
                     {{comment.comment}}
                 </div>
             </div>

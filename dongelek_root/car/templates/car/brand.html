@@ -5,30 +5,30 @@
     </div>
 
 
-    <div class="">
+    <div class="subcategory_cars">
         {% for car in cars %}
-            <div class="" onclick="location.href='{{ car.get_absolute_url }}'">
+            <div class="in_category_car" onclick="location.href='{{ car.get_absolute_url }}'">
                 <div>
                     <img src="{{car.main_image.url}}" alt="{{car.name}}" width="320px" height="240px">
                 </div>
-                <div class="">
-                    <div class="">
+                <div class="in_category_car_main_information">
+                    <div class="in_category_car_name">
                         {{car.name}}
                     </div>
-                    <div class="">
+                    <div class="in_category_car_short_info">
                         {{car.year}} year, {{car.engine_capacity}}L, {{car.run}} kilometre
                     </div>
-                    <div class="">
+                    <div class="in_category_car_short_info">
                         {{car.description|truncatewords:50}}
                     </div>
-                    <div class="">
-                        <div class="">
-                            <div class="">{{car.time_created}}</div>
-                            <div class="">{{car.get_comments}} Comments</div>
+                    <div class="in_category_car_date_created">
+                        <div class="row">
+                            <div class="col-md-6">{{car.time_created}}</div>
+                            <div class="col-md-6">{{car.get_comments}} Comments</div>
                         </div>                            
                     </div>
                 </div>
-                <div class="">
+                <div class="in_category_car_price">
                     <div class="price">
                         {{ car.price }}
                     </div>
