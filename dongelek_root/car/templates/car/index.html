@@ -1,21 +1,21 @@
 {% extends 'car/base.html' %}
 {% block content %}
-    <h1 class="titles">Cities</h1>
-    <div class="index_cities_block">    
+    <h1 class="">Cities</h1>
+    <div class="">
         {% for city in cities %}
             <a href="{{ city.get_absolute_url }}"/>
-                <div class="index_city_block">
+                <div class="">
                     {{city.name}}
                 </div>
             </a>
         {% endfor %}
     </div>
-    <h1 class="titles">Brands</h1>
-    <div class="index_brands_block">
+    <h1 class="">Brands</h1>
+    <div class="">
         {% for brand in brands %}
-            <div class="index_brand_block">
+            <div class="">
                 <a href="{{ brand.get_absolute_url }}">
-                    <div class="index_brand_logo">
+                    <div class="">
                         <img width="200px" height="auto" class="index_brand_logo" src="{{ brand.logo.url }}" alt="{{ brand.name }}">
                     </div>
                     <h4 class="index_brand_name">{{brand.name}}</h4>

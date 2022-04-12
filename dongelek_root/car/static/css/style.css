@@ -1,124 +1,14 @@
-body{
-    margin: 0;
-    background-color: #6c6c6c;
+a{
+    text-decoration: none;
+    color: black
 }
-.titles__profile{
-    color: white;
-}
-.menu_block{
-    display: flex;
-}
-.menu{
-    margin: 20px;
-    font-size: 20px;
-}
-.last_menu_block{
-    display: flex;
-    font-size: 20px;
-}
-.last_menu{
-    margin: 20px;
-    height: 22.4px;
-}
-header{
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    margin-bottom: 10px;
-}    
-.index_brands_block{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.index_brand_block{
-    justify-content: center;
-    margin: 50px;
-}
-.index_brand_logo{
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-}
-.index_brand_block h4{
-    text-align: center;
-    font-size: 1vw;
-    margin-bottom: 50px;
-}
-.titles{
-    font-size: 2vw;
-}
-#logo{
-    margin-left: 20px;
-}
-.index_city_block{
-    font-size: 1vw;
-}
-.subcategory_cars{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.index_cities_block{
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 50px;
-}
-.titles{
-    text-align: center;
-    font-size: 50px;
-    font-weight: 700;
-}
-.content{
-    text-align: center;
-}
-.in_category_car{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    height: 100%;
-    border: 1px;
-    border-color: gray;
-}
-.in_category_car_main_information{
-    height: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 300px;
-}
-.in_category_car_name{
-    font-weight: 600;
-    font-size:30px;
-    display: flex;
-}
-.in_category_car_short_info{
-    display: flex;
-    font-size: 20px;
-    color: gray;
-}
-.in_category_car_date_created{
-    font-size: 20px;
-    color: gray;
-    display: flex;
-    align-items: flex-end;
-    height: 100px;
-}
-.in_category_car_price{
-    display: flex;
+a:hover{
+    text-decoration: none;
     color: black;
-    font-weight: 600;
-    font-size: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 100%;
-    padding-left: 20px;
 }
-.my-btn{
-    background-color: inherit !important;
-    border: 0 !important;
+div{
+    width: inherit;
 }
-#photos_container{
-    display: flex;
-    flex-wrap: wrap;
+a{
+    width: inherit;
 }
