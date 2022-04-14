@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/header.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js\valute.js' %}" defer></script>
     <link type="text/css" rel="stylesheet" href="{% static 'css/footer.css' %}">
@@ -16,15 +17,18 @@
 
     {% block mainmenu %}
 
-        <header>
+        <div class="header">
 
-            <div class="menu_block menu">
-                <a href="{% url 'home' %}">
+            <a href="{% url 'home' %}">
+                <div class="header_container">
                     <img id="logo" src="{% static 'images/logo.png' %}" height="40px">
-                </a>
-            </div>
+                    <div class="logo_name">
+                        Dongelek.kz
+                    </div>
+                </div>
+            </a>
 
-            <div class="menu_block">
+            <div class="header_container">
                 {% for m in menu %}
                     <a href="{% url m.url_name %}">
                         <div class="menu">{{m.title}}</div>
@@ -38,16 +42,8 @@
                         <div class="menu">Your cart</div>
                     </a>
                 {% endif %}
-                <center>
-                <form action="{% url 'searchbar' %}" method="get">
-                      <input type="text" name="search"/>
-                      <button type="submit">Search</button>
-                </form>
-                </center>
             </div>
-
-
-            <div class="last_menu_block">
+            <div class="header_container last_header_container">
 
                 <select name="currency" id="currency_select" onchange="changeValute()">
                     <option value="none" selected disabled hidden>Select a valute</option>
@@ -55,20 +51,33 @@
                         <option value='{"value":{{ valute.value }}, "nominal":{{ valute.nominal }}, "name":{{valute.char_code}}}' nominal="{{ valute.nominal }}" name="{{ valute.char_code }}">{{ valute.char_code }}</option>
                     {% endfor %}
                 </select>
+
                 <!-- user aty wygyp turady -->
                 {% if request.user.is_authenticated %}
-
-
-                <div class="last_menu"><a href="{% url 'logout'%}">Logout</a></div>
-                    <div class="last_menu"><a href="{% url 'profile' %}">{{user.username}}</a></div>
+                    <a href="{% url 'logout'%}">
+                        <div class="menu">Logout</div>
+                    </a>
+                    <a href="{% url 'profile' %}">
+                        <div class="menu">{{user.username}}</div>
+                    </a>
                 {% else %}
-                    <div class="last_menu"><a href="{% url 'login' %}">Log In</a></div>
-                    <div class="last_menu"><a href="{% url 'register' %}">Register</a></div>
+                    <a href="{% url 'login' %}">
+                        <div class="menu">Log in</div>
+                    </a>
+                    <a href="{% url 'register' %}">
+                        <div class="menu">Register</div>
+                    </a>
                 {% endif %}
-
-
             </div>
-        </header>
+        </div>
+        <center>
+            <div class="search_container">
+                <form action="{% url 'searchbar' %}" method="get">
+                    <input type="text" name="search" placeholder="Search..."/>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </center>
 
     {% endblock mainmenu %}
 

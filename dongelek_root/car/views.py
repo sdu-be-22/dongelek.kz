@@ -26,13 +26,13 @@ menu = [
 
 # Index home page
 def index(request):
-    url = 'https://www.cbr-xml-daily.ru/daily_json.js'
-    response = urlopen(url)
-    data_json = json.loads(response.read())
-    for v_id, v_info in data_json['Valute'].items():
-        Valute.objects.filter(id=v_info["ID"]).update(id=v_info["ID"], num_code=v_info["NumCode"],
-                              char_code=v_info["CharCode"], nominal=v_info["Nominal"],
-                              name=v_info["Name"], value=v_info["Value"], previous=v_info["Previous"])
+    # url = 'https://www.cbr-xml-daily.ru/daily_json.js'
+    # response = urlopen(url)
+    # data_json = json.loads(response.read())
+    # for v_id, v_info in data_json['Valute'].items():
+    #     Valute.objects.filter(id=v_info["ID"]).update(id=v_info["ID"], num_code=v_info["NumCode"],
+    #                           char_code=v_info["CharCode"], nominal=v_info["Nominal"],
+    #                           name=v_info["Name"], value=v_info["Value"], previous=v_info["Previous"])
     brands = Brand.objects.all()
     cities = City.objects.all()
     valutes = Valute.objects.all()
