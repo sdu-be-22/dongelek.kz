@@ -1,61 +1,17 @@
-a{
-    color: white;
-    text-decoration: none;
-}
-a:hover{
-    color:white;
-    text-decoration: none;
-}
 body{
     margin: 0;
-    background-color: #C4C4C4;
 }
 .titles__profile{
     color: white;
 }  
-.index_brands_block{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.index_brand_block{
-    justify-content: center;
-    margin: 50px;
-}
-.index_brand_logo{
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-}
-.index_brand_block h4{
-    text-align: center;
-    font-size: 1vw;
-    margin-bottom: 50px;
-}
-.titles{
-    font-size: 2vw;
-}
-.index_city_block{
-    font-size: 1vw;
-}
 .subcategory_cars{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.index_cities_block{
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 50px;
-}
-.titles{
-    text-align: center;
-    font-size: 50px;
-    font-weight: 700;
-}
 .content{
-    text-align: center;
+    width: 90%;
+    margin: 30px 5%;
 }
 .in_category_car{
     margin-top: 20px;

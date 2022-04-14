@@ -19,6 +19,12 @@ class City(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('city', kwargs={'city_slug': self.slug})
+    def get_amount_cars(self):
+        count = 0;
+        cars = Car.objects.filter(city=self.pk)
+        for car in cars:
+            count = count + 1
+        return count
     class Meta:
         verbose_name = 'City'
         verbose_name_plural = 'Cities'
