@@ -1,31 +1,18 @@
+a{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    color:white;
+    text-decoration: none;
+}
 body{
     margin: 0;
-    background-color: #6c6c6c;
+    background-color: #C4C4C4;
 }
 .titles__profile{
     color: white;
-}
-.menu_block{
-    display: flex;
-}
-.menu{
-    margin: 20px;
-    font-size: 20px;
-}
-.last_menu_block{
-    display: flex;
-    font-size: 20px;
-}
-.last_menu{
-    margin: 20px;
-    height: 22.4px;
-}
-header{
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    margin-bottom: 10px;
-}    
+}  
 .index_brands_block{
     display: flex;
     justify-content: space-around;
@@ -48,9 +35,6 @@ header{
 }
 .titles{
     font-size: 2vw;
-}
-#logo{
-    margin-left: 20px;
 }
 .index_city_block{
     font-size: 1vw;
