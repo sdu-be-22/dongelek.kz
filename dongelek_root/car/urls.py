@@ -27,4 +27,5 @@ urlpatterns = [
     path('update-car/<slug:car_slug>/', update_car, name='update-car'),
     path('add-photos-car/<slug:car_slug>/', add_photos_car, name='add-photos-car'),
     path('searchbar/', searchbar, name='searchbar'),
+    path('update-currency/', update_currency, name='update-currency'),
 ]

@@ -5,6 +5,9 @@
     <script src="{% static 'js\deleteCar.js' %}" defer></script>
 {% endblock %}
 {% block content %}
+<a href="{% url 'update-currency' %}">
+    <button>Update Currency Data</button>
+</a>
 <form action="" method="post" id="delete-form">
     {% csrf_token %}
     {% for car in cars %}
@@ -46,5 +49,5 @@
                 </a>
                 <a href="{{ car.get_absolute_add_url }}">Add new photos</a>
     {% endfor %}
-</form>{% endblock %}
-
+    </form>
+{% endblock %}
