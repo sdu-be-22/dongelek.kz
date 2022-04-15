@@ -335,5 +335,5 @@ def add_photos_car(request, car_slug):
 def searchbar(request):
     if request.method == 'GET':
         search = request.GET.get('search')
-        post = Car.objects.all().filter(name=search)
+        post = Car.objects.all().filter(name__contains=search)
         return render(request, 'car/searchbar.html', {'post': post})
