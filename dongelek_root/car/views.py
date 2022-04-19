@@ -10,6 +10,11 @@ from dongelek.settings import EMAIL_HOST_USER
 import os.path
 import requests
 import json
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 
 
 from urllib.request import urlopen
@@ -22,13 +27,13 @@ menu = [
     {'title': "About site",
      'url_name': 'about'},
 ]
+valutes = Valute.objects.all()
 
 
 # Index home page
 def index(request):
     brands = Brand.objects.all()
     cities = City.objects.all()
-    valutes = Valute.objects.all()
     context = {
         'title': "Main Page",
         'menu': menu,
@@ -90,7 +95,6 @@ def logout_request(request):
 
 # About
 def about(request):
-    valutes = Valute.objects.all()
     context = {
         'title': "About",
         'menu': menu,
@@ -102,7 +106,6 @@ def about(request):
 # Profile
 def profile(request):
     cars = Car.objects.filter(seller=request.user)
-    valutes = Valute.objects.all()
     context = {
         'title': 'My profile',
         'menu': menu,
@@ -115,7 +118,6 @@ def profile(request):
 
 # add_car
 def add_car(request):
-    valutes = Valute.objects.all()
     if request.method == 'POST':
         form = AddCar(request.POST, request.FILES)
         if form.is_valid():
@@ -136,7 +138,6 @@ def add_car(request):
 
 
 def brand(request, brand_slug):
-    valutes = Valute.objects.all()
     chosen_brand = Brand.objects.get(slug=brand_slug)
     cars = Car.objects.filter(brand_id=chosen_brand.pk)
     context = {
@@ -151,7 +152,6 @@ def brand(request, brand_slug):
 
 
 def city(request, city_slug):
-    valutes = Valute.objects.all()
     city = City.objects.get(slug=city_slug)
     cars = Car.objects.filter(city_id=city.pk)
     context = {
@@ -164,7 +164,6 @@ def city(request, city_slug):
     return render(request, 'car/brand.html', context)
 
 def cart(request):
-    valutes = Valute.objects.all()
     cars = Cart.objects.filter(user=request.user)
     context = {
         'valutes': valutes,
@@ -176,7 +175,6 @@ def cart(request):
 
 
 def car(request, car_slug):
-    valutes = Valute.objects.all()
     car = Car.objects.get(slug=car_slug)
     photos = Car_photos.objects.filter(car=car)
     seller = User.objects.get(pk=car.seller.pk)
@@ -299,7 +297,6 @@ def update_car(request, car_slug):
             except:
                 form.add_error(None, "There are some errors")
     form = CarForm(instance=car)
-    valutes = Valute.objects.all()
     context = {
         'valutes': valutes,
         'title': "Updating data about " + car.name,
@@ -323,7 +320,6 @@ def add_photos_car(request, car_slug):
         return redirect('profile')
     else:
         form = PhotosForm()
-    valutes = Valute.objects.all()
     context = {
         'valutes': valutes,
         'title': "Add new photos",
@@ -338,7 +334,7 @@ def searchbar(request):
     context = {
         'brands': Brand.objects.all(),
         'cities': City.objects.all(),
-        'valutes': Valute.objects.all(),
+        'valutes': valutes,
         'title': "Search Results",
         'menu': menu,
     }
@@ -352,3 +348,41 @@ def searchbar(request):
         context['post'] = post
 
         return render(request, 'car/searchbar.html', context)
+def purchase(request):
+    if request.method == 'POST':
+        cart_id = request.POST.get('cart')
+        cart = Cart.objects.get(pk=cart_id)
+        user = cart.user
+        car = cart.car
+        Purchase.objects.create(user=user, car=car).save()
+        cart.delete()
+    return redirect('profile')
+def purchases(request):
+    context = {
+        'purchases': Purchase.objects.filter(user=request.user),
+        'valutes': valutes,
+        'title': "My purchases",
+        'menu': menu,
+    }
+    return render(request, 'car/purchase.html', context)
+def purchase_pdf(request):
+    if request.method == 'POST':
+        purchase_id = request.POST.get('purchase')
+        purchase = Purchase.objects.get(pk=purchase_id)
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=letter)
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 14)
+        lines = []
+        lines.append("Customer:" + str(purchase.user))
+        lines.append("Product:" + str(purchase.car))
+        lines.append("Seller:" + str(purchase.car.seller))
+        for line in lines:
+            textob.textLine(line)
+
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buf.seek(0)
+        return FileResponse(buf, as_attachment=True, filename='purchase.pdf')
