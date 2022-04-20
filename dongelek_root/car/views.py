@@ -186,7 +186,8 @@ def car(request, car_slug):
         if form.is_valid():
             try:
                 Comments.objects.create(**form.cleaned_data, author=request.user, car=car)
-                return redirect(car.get_absolute_url)
+                request.POST = None
+                return redirect('profile')
             except:
                 form.add_error(None, "There are some errors")
         form = AddComment()
