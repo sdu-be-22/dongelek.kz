@@ -61,6 +61,9 @@ class Car(models.Model):
     
     def __str__(self):
         return self.name
+
+    def get_amount_ratings(self):
+        return len(Ratings.objects.filter(car=self))
    
     def get_absolute_url(self):
         return reverse('car', kwargs={'car_slug': self.slug})

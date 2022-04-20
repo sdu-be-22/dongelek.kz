@@ -11,7 +11,6 @@ let star_initial = first.src;
 let star_over = first.getAttribute("data-original");
 
 const form = document.querySelector('.rate-form');
-const confirmBox = document.getElementById('confirm-box');
 
 const car = document.getElementById("car_id").getAttribute("car")
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
@@ -53,10 +52,9 @@ ratings.forEach(item=> item.addEventListener('click', event=>{
                 'rating': rating,
             },
             success: function(response){
-                confirmBox.innerHTML = '<h1> Successfully rated </h1>'
+                location.reload()
             },
             error: function(error){
-                confirmBox.innerHTML = '<h1>Ups!!!... Something went wrong!</h1>'
             }
         })
     })

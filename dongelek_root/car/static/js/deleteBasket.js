@@ -13,10 +13,9 @@ btn_basket_delete.addEventListener('click', event=>{
                 'car_basket':car_basket
             },
             success:function(response){
-                confirmBox_basket.innerHTML = "Car is removed from your shopping cart"
+                location.reload()
             },
             error:function(error){
-                confirmBox_basket.innerHTML = "Upppss.. Something went incorrectly!!!"
             }
         })
     })
