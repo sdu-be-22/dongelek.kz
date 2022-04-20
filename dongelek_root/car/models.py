@@ -61,6 +61,9 @@ class Car(models.Model):
     
     def __str__(self):
         return self.name
+
+    def get_amount_ratings(self):
+        return len(Ratings.objects.filter(car=self))
    
     def get_absolute_url(self):
         return reverse('car', kwargs={'car_slug': self.slug})
@@ -135,6 +138,11 @@ class Ratings(models.Model):
         verbose_name_plural = 'Ratings'
 
 class Cart(models.Model):
+    date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+
+class Purchase(models.Model):
     date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)

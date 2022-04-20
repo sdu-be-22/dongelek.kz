@@ -10,4 +10,5 @@ admin.site.register(Comments)
 admin.site.register(Visits)
 admin.site.register(Ratings)
 admin.site.register(Cart)
+admin.site.register(Purchase)
 
