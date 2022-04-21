@@ -30,5 +30,7 @@ urlpatterns = [
     path('update-currency/', update_currency, name='update-currency'),
     path('purchase_pdf', purchase_pdf, name='purchase_pdf'),
     path('purchase/', purchase, name='purchase'),
-    path('purchases/', purchases, name='purchases')
+    path('purchases/', purchases, name='purchases'),
+    path('list-users', adds_pdf, name='list_users'),
+
 ]

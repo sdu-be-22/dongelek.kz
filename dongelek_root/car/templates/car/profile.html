@@ -37,7 +37,8 @@
                         <div class="in_category_car_view">
                             <div class="row">
                                 <div class="col-md-6">{{car.get_visiters}} Views</div>
-                                <div class="col-md-6">{{car.get_carts}} Added</div>
+                                <div class="col-md-6">
+                                </div>
                             </div>
                         </div>
 
@@ -49,5 +50,9 @@
                 </a>
                 <a href="{{ car.get_absolute_add_url }}">Add new photos</a>
     {% endfor %}
+    </form>
+    <form action="{%url 'list_users' %}" method="get">
+        {% csrf_token %}
+        <button type="submit" name="product_id" value="{{car.pk}}">Added users list</button>
     </form>
 {% endblock %}
