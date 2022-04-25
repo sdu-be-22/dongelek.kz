@@ -139,7 +139,7 @@ def add_car(request):
 
 def brand(request, brand_slug):
     chosen_brand = Brand.objects.get(slug=brand_slug)
-    cars = Car.objects.filter(brand_id=chosen_brand.pk)
+    cars = Car.objects.filter(brand_id=chosen_brand.pk,isSold=False)
     context = {
         'title': chosen_brand.name,
         'menu': menu,
@@ -153,7 +153,7 @@ def brand(request, brand_slug):
 
 def city(request, city_slug):
     city = City.objects.get(slug=city_slug)
-    cars = Car.objects.filter(city_id=city.pk)
+    cars = Car.objects.filter(city_id=city.pk,isSold=False)
     context = {
         'valutes': valutes,
         'title': city.name,
@@ -219,7 +219,7 @@ def rate_car(request):
     if request.method == 'POST':
         rating = request.POST.get('rating')
         car_id = request.POST.get('car')
-        car = Car.objects.get(pk=car_id)
+        car = Car.objects.get(pk=car_id,isSold=False)
         rater = request.user
         Ratings.objects.filter(car=car, rater=rater).delete()
         Ratings.objects.create(rating=rating, car=car, rater=rater).save()
@@ -230,7 +230,7 @@ def rate_car(request):
 def add_to_cart(request):
     if request.method == 'POST':
         car_id = request.POST.get('car_basket')
-        car = Car.objects.get(pk=car_id)
+        car = Car.objects.get(pk=car_id,isSold=False)
         user = request.user
         Cart.objects.filter(car=car, user=user).delete()
         Cart.objects.create(car=car, user=user).save()
@@ -241,7 +241,7 @@ def add_to_cart(request):
 def delete_from_cart(request):
     if request.method == 'POST':
         car_id = request.POST.get('car_basket')
-        car = Car.objects.get(pk=car_id)
+        car = Car.objects.get(pk=car_id,isSold=False)
         user = request.user
         Cart.objects.filter(car=car, user=user).delete()
         return JsonResponse({'success': 'true'})
@@ -251,7 +251,7 @@ def delete_from_cart(request):
 def delete_car(request):
     if request.method == 'POST':
         car_id = request.POST.get('car')
-        car = Car.objects.filter(pk=car_id).delete()
+        car = Car.objects.filter(pk=car_id,isSold=False).delete()
         print(car)
         return JsonResponse({'success': 'true'})
     return JsonResponse({'success:': 'false'})
@@ -260,7 +260,7 @@ def delete_car(request):
 def send_email(request):
     if request.method == 'POST':
         car_id = request.POST.get('car_interested')
-        car = Car.objects.get(pk=car_id)
+        car = Car.objects.get(pk=car_id,isSold=False)
         seller_email = request.POST.get('seller_email')
         seller_username = request.POST.get('seller_username')
         subject = 'Someone is interested to your car '
@@ -276,7 +276,7 @@ def send_email(request):
 
 
 def update_car(request, car_slug):
-    car = Car.objects.get(slug=car_slug)
+    car = Car.objects.get(slug=car_slug,isSold=False)
     if request.method == 'POST':
         form = AddCar(request.POST, request.FILES)
         if form.is_valid():
@@ -312,7 +312,7 @@ def update_car(request, car_slug):
 
 
 def add_photos_car(request, car_slug):
-    car = Car.objects.get(slug=car_slug)
+    car = Car.objects.get(slug=car_slug,isSold=False)
     if request.method == 'POST':
         form = PhotosForm(request.POST, request.FILES)
         files = request.FILES.getlist('image')
@@ -342,10 +342,10 @@ def searchbar(request):
     if request.method == 'GET':
         post = {}
         if request.GET.getlist('city'):
-            post = Car.objects.filter(city__name__in=request.GET.getlist('city'), brand__name__in=request.GET.getlist('brand'))
+            post = Car.objects.filter(city__name__in=request.GET.getlist('city'), brand__name__in=request.GET.getlist('brand'),isSold=False)
         elif request.GET.get('search'):
             search = request.GET.get('search')
-            post = Car.objects.filter(name__icontains=search)
+            post = Car.objects.filter(name__icontains=search,isSold=False)
         context['post'] = post
 
         return render(request, 'car/searchbar.html', context)
@@ -355,6 +355,8 @@ def purchase(request):
         cart = Cart.objects.get(pk=cart_id)
         user = cart.user
         car = cart.car
+        car.isSold = True
+        car.save()
         Purchase.objects.create(user=user, car=car).save()
         cart.delete()
     return redirect('profile')
@@ -387,3 +389,22 @@ def purchase_pdf(request):
         c.save()
         buf.seek(0)
         return FileResponse(buf, as_attachment=True, filename='purchase.pdf')
+def adds_pdf(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        views = Cart.objects.filter(car=product_id)
+        buf = io.BytesIO()
+        c = canvas.Canvas(buf, pagesize=letter)
+        textob = c.beginText()
+        textob.setTextOrigin(inch, inch)
+        textob.setFont("Helvetica", 14)
+        textob.textLine("x")
+        # for line in views:
+        #     print("x")
+            # textob.textLine(line.user)
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buf.seek(0)
+        return FileResponse(buf, as_attachment=True, filename='addList.pdf')
+    
