@@ -2,6 +2,15 @@
 {% block content %}
     <div class="titles">
         {{brand}}
+        <form action="{{ brand.get_absolute_url }}" method="get">
+            <select onchange="this.form.submit()" name="sort" id="sort">
+                <option value="none" selected disabled hidden>Сортировка</option>
+                <option value="priceup">По возрастанию цены</option>
+                <option value="pricedown">По убыванию цены</option>
+                <option value="news">Новые</option>
+                <option value="olds">Старые</option>
+            </select>
+        </form>
     </div>
 
 
