@@ -68,4 +68,8 @@
                 </div>
     {% endfor %}
     </form>
+    <form action="{%url 'list_users' %}" method="get">
+        {% csrf_token %}
+        <button type="submit" name="product_id" value="{{car.pk}}">Added users list</button>
+    </form>
 {% endblock %}
