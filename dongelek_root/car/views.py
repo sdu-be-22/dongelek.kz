@@ -276,7 +276,7 @@ def send_email(request):
 
 
 def update_car(request, car_slug):
-    car = Car.objects.get(slug=car_slug,isSold=False)
+    car = Car.objects.get(slug=car_slug)
     if request.method == 'POST':
         form = AddCar(request.POST, request.FILES)
         if form.is_valid():
@@ -312,7 +312,7 @@ def update_car(request, car_slug):
 
 
 def add_photos_car(request, car_slug):
-    car = Car.objects.get(slug=car_slug,isSold=False)
+    car = Car.objects.get(slug=car_slug)
     if request.method == 'POST':
         form = PhotosForm(request.POST, request.FILES)
         files = request.FILES.getlist('image')
