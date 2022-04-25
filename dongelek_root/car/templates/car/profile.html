@@ -3,6 +3,7 @@
 {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'js\deleteCar.js' %}" defer></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 {% block content %}
 <a href="{% url 'update-currency' %}">
@@ -11,43 +12,60 @@
 <form action="" method="post" id="delete-form">
     {% csrf_token %}
     {% for car in cars %}
-                <div class="in_category_car" onclick="location.href='{{ car.get_absolute_url }}'">
-                    <div>
-                        <img src="{{car.main_image.url}}" alt="{{car.name}}" width="320px" height="240px">
+                <div class="statistics_main_container" onclick="location.href='{{ car.get_absolute_url }}'">
+                    <div class="statistics_main_image_container">
+                        <img src="{{car.main_image.url}}" alt="{{car.name}}" width="100%">
                     </div>
-                    <div class="in_category_car_main_information">
+                    <div class="main_information_container">
 
-                        <div class="in_category_car_name">
+                        <div class="name_container">
                             {{car.name}}
                         </div>
-                        <div class="in_category_car_date_created">
-                            <div class="row">
-                                <div class="col-md-6">{{car.time_created}}</div>
-                                <div class="col-md-6">{{car.get_comments}} Comments</div>
+                        <div class="date_container">{{car.time_created}}</div>
+                        <div class="statistics_container">
+                            <div>
+                                <img src="{% static 'images\comment.png' %}" alt="" width="30px">
                             </div>
+                            <div class="statistic_number">{{car.get_comments}}&nbsp;</div>
+                            <div class="statistic_decription">Comments</div>
                         </div>
-
-                        <div class="in_category_car_rating">
-                            <div class="row">
-                                <div class="col-md-6">{{car.get_count_rating}} Rated</div>
-                                <div class="col-md-6">{{car.get_average_rating}} Average</div>
+                        <div class="statistics_container">
+                            <div>
+                                <img src="{% static 'images\average.png' %}" alt="" width="30px">
                             </div>
+                            <div class="statistic_number">{{car.get_average_rating}}&nbsp;</div>
+                            <div class="statistic_decription">Average</div>
                         </div>
-
-                        <div class="in_category_car_view">
-                            <div class="row">
-                                <div class="col-md-6">{{car.get_visiters}} Views</div>
-                                <div class="col-md-6">{{car.get_carts}} Added</div>
+                        <div class="statistics_container">
+                            <div>
+                                <img src="{% static 'images\ava.png' %}" alt="" width="30px">
                             </div>
+                            <div class="statistic_number">{{car.get_count_rating}}&nbsp;</div>
+                            <div class="statistic_decription">Rated</div>
                         </div>
-
+                        <div class="statistics_container">
+                            <div>
+                                <img src="{% static 'images\view.png' %}" alt="" width="30px">
+                            </div>
+                            <div class="statistic_number">{{car.get_visiters}}&nbsp;</div>
+                            <div class="statistic_decription">Views</div>
+                        </div>
+                        <div class="statistics_container">
+                            <div>
+                                <img src="{% static 'images\cart.png' %}" alt="" width="30px">
+                            </div>
+                            <div class="statistic_number">{{car.get_carts}}&nbsp;</div>
+                            <div class="statistic_decription">Added</div>
+                        </div>
+                    </div>
+                    <div class="buttons_container">
+                        <button type="submit" class="delete_button" id="{{car.pk}}">Delete</button>
+                        <a href="{{ car.get_absolute_update_url }}">
+                            <div>Update</div>
+                        </a>
+                        <a href="{{ car.get_absolute_add_url }}">Add new photos</a>
                     </div>
                 </div>
-                <button type="submit" class="delete_button" id="{{car.pk}}">Delete</button>
-                <a href="{{ car.get_absolute_update_url }}">
-                    <div>Update</div>
-                </a>
-                <a href="{{ car.get_absolute_add_url }}">Add new photos</a>
     {% endfor %}
     </form>
 {% endblock %}
