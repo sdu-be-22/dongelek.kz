@@ -21,7 +21,7 @@ class City(models.Model):
         return reverse('city', kwargs={'city_slug': self.slug})
     def get_amount_cars(self):
         count = 0;
-        cars = Car.objects.filter(city=self.pk)
+        cars = Car.objects.filter(city=self.pk,isSold=False)
         for car in cars:
             count = count + 1
         return count
@@ -58,7 +58,8 @@ class Car(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
     main_image = models.ImageField(upload_to='car/main_image/%Y/%m/%d')
     price = models.BigIntegerField()
-    
+    isSold = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 
