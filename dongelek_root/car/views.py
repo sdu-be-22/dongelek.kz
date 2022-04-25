@@ -389,22 +389,4 @@ def purchase_pdf(request):
         c.save()
         buf.seek(0)
         return FileResponse(buf, as_attachment=True, filename='purchase.pdf')
-def adds_pdf(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        views = Cart.objects.filter(car=product_id)
-        buf = io.BytesIO()
-        c = canvas.Canvas(buf, pagesize=letter)
-        textob = c.beginText()
-        textob.setTextOrigin(inch, inch)
-        textob.setFont("Helvetica", 14)
-        textob.textLine("x")
-        # for line in views:
-        #     print("x")
-            # textob.textLine(line.user)
-        c.drawText(textob)
-        c.showPage()
-        c.save()
-        buf.seek(0)
-        return FileResponse(buf, as_attachment=True, filename='addList.pdf')
     
