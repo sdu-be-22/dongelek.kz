@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
 <a href="{% url 'update-currency' %}">
-    <button>Update Currency Data</button>
+    <button class="update-currency-btn">Update Currency Data</button>
 </a>
 <form action="" method="post" id="delete-form">
     {% csrf_token %}

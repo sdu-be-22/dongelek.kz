@@ -2,6 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300;400&family=Roboto+Condensed&display=swap');
 
+.update-currency-btn{
+    width: 250px;
+    font-family: 'Akshar', sans-serif;    
+    padding: 10px 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+.update-currency-btn:hover{
+    background-color: white;
+    color: black;
+}
 .statistics_main_container{
     display: flex;
     align-items: center;
@@ -34,6 +49,7 @@
     margin-bottom: 5px;
     margin-left: 10px;
 }
+
 .statistic_number{
     font-weight: 900;
 }
