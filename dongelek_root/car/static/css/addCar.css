@@ -151,6 +151,7 @@ form{
     color: #212121;
 }
 .form_container button{
+    transition: background-color linear .3s;
     width: 100%;
     padding: 0px 20px;
     align-items: center;
