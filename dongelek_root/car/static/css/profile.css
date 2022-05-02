@@ -3,6 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300;400&family=Roboto+Condensed&display=swap');
 
 .update-currency-btn{
+    transition: background-color linear .3s;
+    transition: color linear .3s;
     width: 250px;
     font-family: 'Akshar', sans-serif;    
     padding: 10px 30px;
@@ -20,8 +22,16 @@
 .statistics_main_container{
     display: flex;
     align-items: center;
+    border: 1px solid #C4C4C4;
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
     margin-bottom: 50px;
+    box-shadow: rgba(24, 67, 99, 0.1) 0px 8px 16px 0px, rgba(24, 67, 99, 0.1) 0px 1px 2px 0px;
     width: 100%;
+    transition: box-shadow linear .3s;
+}
+.statistics_main_container:hover{
+    box-shadow: rgba(0, 0, 0, 0.32) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 .statistics_main_image_container{
     width: 40%;
@@ -67,6 +77,8 @@
     width:30%
 }
 .buttons_container button{
+    transition: background-color linear .3s;
+    transition: color linear .3s;
     width: 250px;
     font-family: 'Akshar', sans-serif;    
     padding: 10px 30px;
@@ -81,6 +93,8 @@
     color: black;
 }
 .buttons_container a{
+    transition: background-color linear .3s;
+    transition: color linear .3s;
     text-decoration: none;
     text-align: center;
     color:black;

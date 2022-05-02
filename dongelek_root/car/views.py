@@ -187,7 +187,7 @@ def car(request, car_slug):
             try:
                 Comments.objects.create(**form.cleaned_data, author=request.user, car=car)
                 request.POST = None
-                return redirect('profile')
+                return redirect(car.get_absolute_url())
             except:
                 form.add_error(None, "There are some errors")
         form = AddComment()
@@ -342,9 +342,15 @@ def searchbar(request):
     if request.method == 'GET':
         post = {}
         if request.GET.getlist('city'):
-            post = Car.objects.filter(city__name__in=request.GET.getlist('city'), brand__name__in=request.GET.getlist('brand'),isSold=False)
+            if request.GET.get('search'):
+                search = request.GET.get('search')
+                context['search'] = search
+                post = Car.objects.filter(name__icontains=search, city__name__in=request.GET.getlist('city'), brand__name__in=request.GET.getlist('brand'), isSold=False)
+            else:
+                post = Car.objects.filter(city__name__in=request.GET.getlist('city'), brand__name__in=request.GET.getlist('brand'),isSold=False)
         elif request.GET.get('search'):
             search = request.GET.get('search')
+            context['search'] = search
             post = Car.objects.filter(name__icontains=search,isSold=False)
         context['post'] = post
 

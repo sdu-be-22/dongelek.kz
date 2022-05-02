@@ -64,6 +64,8 @@ img{
     margin-bottom: 20px;
 }
 .cart-btn{
+    transition: background-color linear .3s;
+    transition: color linear .3s;
     width: 250px;
     font-family: 'Akshar', sans-serif;    
     padding: 10px 30px;
@@ -78,6 +80,8 @@ img{
     color: black;
 }
 .my-btn-email{
+    transition: background-color linear .3s;
+    transition: color linear .3s;
     font-weight: 700;
     border-color: #C4C4C4;
     padding: 10px 0px;
@@ -145,6 +149,7 @@ img{
     margin-bottom: 40px;
 }
 .new_comment_container button{
+    transition: background-color linear .3s;
     padding: 20px 0px;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: #eeeeee;
@@ -155,6 +160,9 @@ img{
     width: 210px;
     height: 90px;
     border-radius: 10px;
+}
+.new_comment_container button:hover{
+    background-color: #dadadaf1;
 }
 .comments_container hr{
     border: 0px;
