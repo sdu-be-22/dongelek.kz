@@ -1,3 +1,4 @@
+from cProfile import run
 from django.contrib import messages
 from django.shortcuts import *
 from django.http import HttpRequest, JsonResponse
@@ -140,12 +141,27 @@ def add_car(request):
 def brand(request, brand_slug):
     chosen_brand = Brand.objects.get(slug=brand_slug)
     cars = Car.objects.filter(brand_id=chosen_brand.pk,isSold=False)
+    price_up = cars.order_by('price')
+    price_down = cars.order_by('-price')
+    news = cars.order_by('-year')
+    olds = cars.order_by('year')
+    if request.method =='GET':
+        form = request.GET.get('sort')
+        if form == 'priceup':
+            cars = price_up
+        elif form == 'pricedown':
+            cars = price_down
+        elif form == 'news':
+            cars = news
+        elif form == 'olds':
+            cars = olds
     context = {
         'title': chosen_brand.name,
         'menu': menu,
         'cars': cars,
         'valutes': valutes,
-        'brand': chosen_brand
+        'brand': chosen_brand,
+        
     }
 
     return render(request, 'car/brand.html', context)
@@ -154,12 +170,26 @@ def brand(request, brand_slug):
 def city(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cars = Car.objects.filter(city_id=city.pk,isSold=False)
+    price_up = cars.order_by('price')
+    price_down = cars.order_by('-price')
+    news = cars.order_by('-year')
+    olds = cars.order_by('year')
+    if request.method =='GET':
+        form = request.GET.get('sort')
+        if form == 'priceup':
+            cars = price_up
+        elif form == 'pricedown':
+            cars = price_down
+        elif form == 'news':
+            cars = news
+        elif form == 'olds':
+            cars = olds
     context = {
         'valutes': valutes,
         'title': city.name,
         'menu': menu,
         'cars': cars,
-        'brand': city
+        'brand': city,
     }
     return render(request, 'car/brand.html', context)
 
