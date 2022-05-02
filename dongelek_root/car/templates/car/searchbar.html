@@ -73,7 +73,17 @@
                             </div>
                         {% endfor %}
                 {% else %}
-                    <div>Nothing found</div>
+                    <div class="not-found-container">
+                        <div class="not-found-main-message-container">
+                            Didn't find anything for "{{search}}"
+                        </div>
+                        <div class="not-found-additional-message-container">
+                            Try searching another vehicle
+                        </div>
+                        <div class="not-found-image-container">
+                            <img src="{% static 'images/searching.png' %}" alt="" width="100%">
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
