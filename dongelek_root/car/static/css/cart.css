@@ -1,0 +1,108 @@
+body{
+    color: black;
+    /*font-family: 'Oleo Script', cursive;*/
+}
+
+.titles{
+    height: 80px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
+}
+.title{
+    line-height: 80px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+}
+.title_form{
+    line-height: 80px;
+    text-align: right;
+}
+.title_select{
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+}
+
+.subcategory_cars{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.in_category_car{
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 380px;
+    height: 380px;
+}
+.car_img{
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0;
+    background-color: #eeeeee;
+    width: 380px;
+    height: 220px;
+}
+.in_category_car_main_information{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 380px;
+    margin: 0;
+}
+
+.name{
+    font-size: 28px;
+    font-weight: 600;
+}
+.price{
+    border-bottom: 1px solid black;
+    color: #cc3300;
+    width: 160px;
+    margin-top: 5px;
+    font-weight: 550;
+    font-size: 20px;
+}
+
+.in_category_car_created_button{
+    margin-top: 5px;
+    height: 30px;
+    text-align: center;
+}
+.button{
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 550;
+}
+.button:hover{
+    background-color: #5897fb;
+}
+
+.buy_button{
+    background-color: #f5dd5d;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 550;
+}
+.buy_button:hover{
+    background-color: #5897fb;
+}

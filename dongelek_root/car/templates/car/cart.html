@@ -1,36 +1,65 @@
 {% extends 'car/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
 {% block content %}
+
+    <div class="titles">
+        <div></div>
+        <div class="title">Cart</div>
+        <form action="{{ brand.get_absolute_url }}" method="get" class="title_form">
+            <select onchange="this.form.submit()" name="sort" class="title_select" id="sort">
+                <option value="none" selected disabled hidden>Sorting</option>
+                <option value="priceup">Ascending prices </option>
+                <option value="pricedown">Descending prices</option>
+                <option value="news">New</option>
+                <option value="olds">Old</option>
+            </select>
+        </form>
+    </div>
+
+
     <div class="subcategory_cars">
         {% for car in cars %}
-            <div class="in_category_car" onclick="location.href='{{ car.car.get_absolute_url }}'">
-                <div>
-                    <img src="{{car.car.main_image.url}}" alt="{{car.car.name}}" width="320px" height="240px">
+            <div class="in_category_car" >
+
+                <div class="car_img_box" onclick="location.href='{{ car.car.get_absolute_url }}'" >
+                    <img class="car_img" src="{{car.car.main_image.url}}" alt="{{car.car.name}}">
                 </div>
+
                 <div class="in_category_car_main_information">
-                    <div class="in_category_car_name">
+                    <div class="name">
                         {{car.car.name}}
                     </div>
-                    <div class="in_category_car_short_info">
-                        {{car.car.year}} year, {{car.car.engine_capacity}}L, {{car.car.run}} kilometre
-                    </div>
-                    <div class="in_category_car_short_info">
-                        {{car.car.description|truncatewords:50}}
-                    </div>
-                    <div class="in_category_car_date_created">
-                        {{car.car.time_created}}
-                    </div>
-                </div>
-                <div class="in_category_car_price">
+{#                    <div class="in_category_car_city_info">#}
+{##}
+{#                    <div class="in_category_car_short_info">#}
+{#                        {{car.car.year}} year, {{car.car.engine_capacity}}L, {{car.car.run}} kilometre#}
+{#                    </div>#}
+{#                    <div class="in_category_car_short_info">#}
+{#                        {{car.car.description|truncatewords:50}}#}
+{#                    </div>#}
+{#                    <div class="in_category_car_date_created">#}
+{#                        {{car.car.time_created}}#}
+{#                    </div>#}
                     <div class="price">
-                        {{ car.car.price }}
+                        {{ car.car.price }} kzt
                     </div>
-                    <div class="currency">KZT</div>
+                    {#                    <div class="currency">KZT</div>#}
                 </div>
+
+
+                <div class="in_category_car_created_button">
+                    <button onclick="location.href='{{ car.car.get_absolute_url }}'" class="button">More Info</button>
+                </div>
+
+                <form action="{%url 'purchase' %}" method="post" class="in_category_car_created_button">
+                    {% csrf_token %}
+                    <button class="buy_button" type="submit" name="cart" value="{{car.id}}">Buy it</button>
+                </form>
+
             </div>
-            <form action="{%url 'purchase' %}" method="post">
-                {% csrf_token %}
-                <button type="submit" name="cart" value="{{car.id}}">Buy it</button>
-            </form>
         {% endfor %}
     </div>
 {% endblock %}

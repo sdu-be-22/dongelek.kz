@@ -1,14 +1,20 @@
 {% extends 'car/base.html' %}
+{% load static %}
+{% block scripts %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/brand.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="titles">
-        {{brand}}
-        <form action="{{ brand.get_absolute_url }}" method="get">
-            <select onchange="this.form.submit()" name="sort" id="sort">
-                <option value="none" selected disabled hidden>Сортировка</option>
-                <option value="priceup">По возрастанию цены</option>
-                <option value="pricedown">По убыванию цены</option>
-                <option value="news">Новые</option>
-                <option value="olds">Старые</option>
+        <div></div>
+        <div class="title">{{brand}}</div>
+        <form action="{{ brand.get_absolute_url }}" method="get" class="title_form">
+            <select onchange="this.form.submit()" name="sort" class="title_select" id="sort">
+                <option value="none" selected disabled hidden>Sorting</option>
+                <option value="priceup">Ascending prices </option>
+                <option value="pricedown">Descending prices</option>
+                <option value="news">New</option>
+                <option value="olds">Old</option>
             </select>
         </form>
     </div>
@@ -16,34 +22,42 @@
 
     <div class="subcategory_cars">
         {% for car in cars %}
-            <div class="in_category_car" onclick="location.href='{{ car.get_absolute_url }}'">
-                <div>
-                    <img src="{{car.main_image.url}}" alt="{{car.name}}" width="320px" height="240px">
+            <div class="in_category_car">
+                <div class="car_img_box" onclick="location.href='{{ car.get_absolute_url }}'">
+                    <img class="car_img" src="{{car.main_image.url}}" alt="{{car.name}}">
                 </div>
                 <div class="in_category_car_main_information">
-                    <div class="in_category_car_name">
-                        {{car.name}}
+                    <div class="in_category_car_year_run_info">
+                        {{car.year}} / {{car.run}} kilometre
                     </div>
-                    <div class="in_category_car_short_info">
-                        {{car.year}} year, {{car.engine_capacity}}L, {{car.run}} kilometre
+                    <div class="in_category_car_name_price_info">
+                        <div class="name">
+                            {{car.name}}
+                        </div>
+                        <div class="price">
+                            {{ car.price }} kzt
+                        </div>
                     </div>
-                    <div class="in_category_car_short_info">
-                        {{car.description|truncatewords:50}}
+                    <div class="in_category_car_city_info">
+                        <img src="{% static 'images/location_icon.png' %}" width="13px">
+                        {{car.city}}, KZ
                     </div>
-                    <div class="in_category_car_date_created">
+                    <div class="in_category_car_created_date_info">
                         <div class="row">
                             <div class="col-md-6">{{car.time_created}}</div>
                             <div class="col-md-6">{{car.get_comments}} Comments</div>
-                        </div>                            
+                        </div>
+                    </div>
+                    <div class="in_category_car_created_button">
+                        <button class="button" onclick="location.href='{{ car.get_absolute_url }}'">More Info</button>
                     </div>
                 </div>
-                <div class="in_category_car_price">
-                    <div class="price">
-                        {{ car.price }}
-                    </div>
-                    <div class="currency">KZT</div>
-                </div>
+
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
+
+{#{{car.engine_capacity}}L,#}
+{#<div class="currency">KZT</div>#}
