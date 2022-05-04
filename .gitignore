@@ -139,10 +139,10 @@ secrets.json
 
 dongelek_root/car/__pycache__/
 dongelek_root/car/migrations/__pycache__/
-dongelek_root/db.sqlite3
-dongelek_root/media/
+#dongelek_root/db.sqlite3
+#dongelek_root/media/
 dongelek_root/chat/__pycache__/
 dongelek_root/chat/migrations/__pycache__/
-dongelek_root/car/migrations/
+#dongelek_root/car/migrations/
 virtual/
 

@@ -27,6 +27,7 @@ body{
     width: 90%;
     padding: 10px;
     box-sizing: border-box;
+}
 .subcategory_cars{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
