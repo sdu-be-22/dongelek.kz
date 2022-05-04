@@ -26,9 +26,8 @@ body{
 }
 
 .subcategory_cars{
-    background-color: #cc3300;
     display: grid;
-    grid-template-columns: 33% 1fr 33%;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 2vw;
 }
 .in_category_car{
