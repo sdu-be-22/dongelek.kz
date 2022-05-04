@@ -23,12 +23,11 @@ body{
     width: 200px;
     height: 30px;
 }
-
-
 .test{
     width: 90%;
     padding: 10px;
     box-sizing: border-box;
+.subcategory_cars{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
@@ -61,6 +60,7 @@ body{
     width: 380px;
     margin: 0;
     height: 150px;
+    margin-bottom: 20px;
 }
 .in_category_car_year_run_info{
     font-size: 14px;
@@ -77,6 +77,10 @@ body{
     font-weight: 600;
 }
 .price{
+    font-weight: 550;
+    font-size: 18px;
+}
+.currency{
     font-weight: 550;
     font-size: 18px;
 }
@@ -105,5 +109,54 @@ body{
     font-weight: 550;
 }
 .button:hover{
-    background-color: #5897fb;
+    background-color: #eeeeee;
+}
+.not-found-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.not-found-main-message-container{
+    font-family: 'Ubuntu';
+    font-weight: 900;
+    font-size: 30px;
+    color: #4c4c4c;
+}
+.not-found-image-container{
+    width: 30%;
+    margin-top: 30px;
+}
+.not-found-additional-message-container{
+    margin-top: 20px;
+    font-family: 'Ubuntu';
+    font-size: 17px;
+    color: #666;
+}
+.not-found-container a{
+    margin-top: 20px;
+    transition: background-color linear .3s;
+    transition: color linear .3s;
+    text-decoration: none;
+    text-align: center;
+    color:black;
+    font-weight: 700;
+    border-color: #C4C4C4;
+    padding: 10px 0px;
+    border-style: solid;
+    background-color: #eeeeee;
+    margin-bottom: 10px;
+    font-family: 'Akshar', sans-serif;    
+    width: 250px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.not-found-container a:hover{
+    background-color: white;
+    color: #4f4f4f9e;
+}
+.not-found-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

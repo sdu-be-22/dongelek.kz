@@ -141,20 +141,16 @@ def add_car(request):
 def brand(request, brand_slug):
     chosen_brand = Brand.objects.get(slug=brand_slug)
     cars = Car.objects.filter(brand_id=chosen_brand.pk,isSold=False)
-    price_up = cars.order_by('price')
-    price_down = cars.order_by('-price')
-    news = cars.order_by('-year')
-    olds = cars.order_by('year')
-    if request.method =='GET':
+    if request.method == 'GET':
         form = request.GET.get('sort')
         if form == 'priceup':
-            cars = price_up
+            cars = cars.order_by('price')
         elif form == 'pricedown':
-            cars = price_down
+            cars = cars.order_by('-price')
         elif form == 'news':
-            cars = news
+            cars = cars.order_by('-time_created')
         elif form == 'olds':
-            cars = olds
+            cars = cars.order_by('time_created')
     context = {
         'title': chosen_brand.name,
         'menu': menu,
@@ -170,20 +166,16 @@ def brand(request, brand_slug):
 def city(request, city_slug):
     city = City.objects.get(slug=city_slug)
     cars = Car.objects.filter(city_id=city.pk,isSold=False)
-    price_up = cars.order_by('price')
-    price_down = cars.order_by('-price')
-    news = cars.order_by('-year')
-    olds = cars.order_by('year')
     if request.method =='GET':
         form = request.GET.get('sort')
         if form == 'priceup':
-            cars = price_up
+            cars = cars.order_by('price')
         elif form == 'pricedown':
-            cars = price_down
+            cars = cars.order_by('-price')
         elif form == 'news':
-            cars = news
+            cars = cars.order_by('-time_created')
         elif form == 'olds':
-            cars = olds
+            cars = cars.order_by('time_created')
     context = {
         'valutes': valutes,
         'title': city.name,
@@ -395,10 +387,10 @@ def purchase(request):
         car.save()
         Purchase.objects.create(user=user, car=car).save()
         cart.delete()
-    return redirect('profile')
+    return redirect('purchases')
 def purchases(request):
     context = {
-        'purchases': Purchase.objects.filter(user=request.user),
+        'cars': Purchase.objects.filter(user=request.user),
         'valutes': valutes,
         'title': "My purchases",
         'menu': menu,
@@ -425,4 +417,28 @@ def purchase_pdf(request):
         c.save()
         buf.seek(0)
         return FileResponse(buf, as_attachment=True, filename='purchase.pdf')
-    
+
+def update_user(request):
+    context = {
+        'valutes': valutes,
+        'title': "Update your profile",
+        'menu': menu,
+    }
+    if request.method == "POST":
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            return redirect('profile')
+        else:
+            context['error'] = "Enter unique username and email, also check out first name and last name accuracy"
+    return render(request, 'car/update_user.html', context)
+def my_advertisements(request):
+    cars = Car.objects.filter(seller=request.user)
+    context = {
+        'title': 'My Advertisements',
+        'menu': menu,
+        'cars': cars,
+        'valutes': valutes,
+        'seller': request.user
+    }
+    return render(request, 'car/my_advertisements.html', context)
