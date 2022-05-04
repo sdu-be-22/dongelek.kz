@@ -387,10 +387,10 @@ def purchase(request):
         car.save()
         Purchase.objects.create(user=user, car=car).save()
         cart.delete()
-    return redirect('profile')
+    return redirect('purchases')
 def purchases(request):
     context = {
-        'purchases': Purchase.objects.filter(user=request.user),
+        'cars': Purchase.objects.filter(user=request.user),
         'valutes': valutes,
         'title': "My purchases",
         'menu': menu,

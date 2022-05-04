@@ -4,7 +4,7 @@ body{
 }
 .titles__profile{
     color: white;
-}  
+}
 .subcategory_cars{
     display: flex;
     flex-direction: column;
@@ -50,9 +50,6 @@ body{
     color: black;
     font-weight: 600;
     font-size: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 100%;
     padding-left: 20px;
 }
 .my-btn{
