@@ -57,3 +57,7 @@ class SendEmail(forms.Form):
     Email = forms.EmailField()
     def __str__(self):
         return self.Email
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
