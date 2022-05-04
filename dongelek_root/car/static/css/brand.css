@@ -6,7 +6,6 @@ body{
     height: 80px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    justify-content: space-between;
 }
 .title{
     line-height: 80px;
@@ -25,11 +24,14 @@ body{
     height: 30px;
 }
 
-.subcategory_cars{
-    width: 1450px;
+
+.test{
+    width: 90%;
+    padding: 10px;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2vw;
+    grid-gap: 2rem;
 }
 .in_category_car{
     padding-bottom: 10px;
@@ -41,6 +43,9 @@ body{
     justify-content: space-between;
     width: 380px;
     height: 400px;
+}
+.in_category_car:hover{
+    box-shadow: 0px 0px 22px 5px rgba(0,0,0,0.2);
 }
 .car_img{
     border-radius: 10px;

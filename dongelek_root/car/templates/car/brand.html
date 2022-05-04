@@ -21,6 +21,7 @@
 
 
     <div class="subcategory_cars">
+    <div class="test">
         {% for car in cars %}
             <div class="in_category_car">
                 <div class="car_img_box" onclick="location.href='{{ car.get_absolute_url }}'">
@@ -55,6 +56,8 @@
 
             </div>
         {% endfor %}
+    </div>
+
     </div>
 
 {% endblock %}
