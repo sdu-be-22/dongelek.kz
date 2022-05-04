@@ -1,0 +1,104 @@
+body{
+    color: black;
+    /*font-family: 'Oleo Script', cursive;*/
+}
+.titles{
+    height: 80px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
+}
+.title{
+    line-height: 80px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+}
+.title_form{
+    line-height: 80px;
+    text-align: right;
+}
+.title_select{
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+}
+
+.subcategory_cars{
+    background-color: #cc3300;
+    display: grid;
+    grid-template-columns: 33% 1fr 33%;
+    grid-gap: 2vw;
+}
+.in_category_car{
+    padding-bottom: 10px;
+    border: 1px solid rgba(206, 206, 206, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 380px;
+    height: 400px;
+}
+.car_img{
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0;
+    background-color: #eeeeee;
+    width: 380px;
+    height: 240px;
+}
+.in_category_car_main_information{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 380px;
+    margin: 0;
+    height: 150px;
+}
+.in_category_car_year_run_info{
+    font-size: 14px;
+    font-weight: 550;
+}
+.in_category_car_name_price_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 3px;
+}
+.name{
+    font-size: 18px;
+    font-weight: 600;
+}
+.price{
+    font-weight: 550;
+    font-size: 18px;
+}
+.in_category_car_city_info{
+    margin-top: 5px;
+}
+.in_category_car_created_date_info{
+    margin-top: 5px;
+}
+.row{
+    display: flex;
+}
+.in_category_car_created_button{
+    margin-top: 5px;
+    height: 30px;
+    text-align: center;
+}
+.button{
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 550;
+}
+.button:hover{
+    background-color: #5897fb;
+}
