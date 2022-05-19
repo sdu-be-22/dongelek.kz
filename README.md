@@ -23,6 +23,7 @@ Bissenbay Dauletbayev - b.dauletbayev@sdu.edu.kz
 
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/91070520/169205828-be712bea-e4ce-4851-a794-c80db6230a82.png)
 
 
 
