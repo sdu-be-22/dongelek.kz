@@ -20,6 +20,9 @@ Bissenbay Dauletbayev - b.dauletbayev@sdu.edu.kz
 ## Team Members
 * Khassen Dinmukhambet - 200103469@stu.sdu.edu.kz
 * Zhairbay Yernar - 200103469@stu.sdu.edu.kz
+* Zhanedilov Aset - 200103517@stu.sdu.edu.kz
+* Zhumagaliev Zanggar - 200103469@stu.sdu.edu.kz
+* Jaxylyk Marlen - 200103078@stu.sdu.edu.kz
 
 
 ## Screenshots
@@ -49,6 +52,7 @@ Bissenbay Dauletbayev - b.dauletbayev@sdu.edu.kz
 
 
 ## Database
+![image](https://user-images.githubusercontent.com/91144667/169206520-9148c111-faa1-48c4-b085-49a01bc721d8.png)
 
 
 
